@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import SideBar from './components/SideBar'
 import Boxes from './components/Boxes'
 import ButtonClick from './components/ButtonClick'
+import BasicList from './components/BasicList'
 
 function App() {
   // const [theme, colorMode] = useMode()
@@ -14,6 +15,7 @@ function App() {
     <CssBaseline enableColorScheme/>
         <div className="app">
           <main className='content'>
+          <BasicList/>
           <SideBar/>
           <Boxes/>
           <ButtonClick/>
