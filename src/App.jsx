@@ -3,6 +3,7 @@
 import CssBaseline from '@mui/material/CssBaseline'
 import SideBar from './components/SideBar'
 import Boxes from './components/Boxes'
+import ButtonClick from './components/ButtonClick'
 
 function App() {
   // const [theme, colorMode] = useMode()
@@ -13,7 +14,7 @@ function App() {
           <main className='content'>
           <SideBar/>
           <Boxes/>
-          
+          <ButtonClick/>
           <h1>Vite + React + Mui</h1>
           </main>
         </div>
