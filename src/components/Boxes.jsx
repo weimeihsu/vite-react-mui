@@ -9,14 +9,14 @@ const Boxes = () => {
     return ( 
         <>
         <h1>Boxes CRUD case</h1>
-        <nav className="boxContainer">
+        <div className="boxContainer">
             useState list the value can be reactively changed
             {boxes.map((boxItem, idx)=>(
             <a className="card" key={idx} href={boxItem.href}>
                {boxItem.title}
             </a>
         ))}
-        </nav>
+        </div>
         </>
      )
 }

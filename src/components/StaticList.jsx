@@ -1,4 +1,4 @@
-const SideBar = () => {
+const StaticList = () => {
     const navListStatic =[
         {id:1, title:'React', href:'#'},
         {id:2, title:'Demo', href:'#'},
@@ -19,4 +19,4 @@ const SideBar = () => {
      )
 }
  
-export default SideBar;
+export default StaticList;
