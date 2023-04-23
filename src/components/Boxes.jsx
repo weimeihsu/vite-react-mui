@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+// use state to modify data
 const Boxes = () => {
     const [boxes, setBoxValue] =useState([
         {id:1, title:'React', href:'#'},
