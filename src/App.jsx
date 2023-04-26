@@ -14,18 +14,16 @@ import styled from '@emotion/styled'
 
 
 function App() {
-  const drawerWidth = 240;
+  const drawerWidth = 240
+
   const StyledAppBar = styled(AppBar,{ shouldForwardProp: (prop) => prop !== 'open' })(({theme, open})=>({
-    flexGrow:1,
-   
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
   }),
     ...(open &&{
       width: `calc(100% - ${drawerWidth}px)`,
-      
+      marginLeft: `${drawerWidth}px`,
       transition: theme.transitions.create(['width', 'margin'],{
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -54,7 +52,7 @@ function App() {
     }
   }))
 
-  const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  const StyledMain = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
       flexGrow: 1,
       padding: theme.spacing(3),
@@ -71,7 +69,16 @@ function App() {
         marginLeft: 0,
       }),
     }),
-  );
+  )
+
+  const Header = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  }))
   // const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
@@ -83,8 +90,6 @@ function App() {
     <ThemeProvider theme={darkTheme}>
     <CssBaseline enableColorScheme/>
         <div className="app">
-          
-          
           <StyledAppBar position="absolute" open={open}>
             <Toolbar
               sx={{
@@ -97,7 +102,7 @@ function App() {
                 aria-label="open drawer"
                 onClick={toggleDrawer}
                 sx={{
-                  marginRight: '36px',
+                  mr:2,
                   ...(open && { display: 'none' }),
                 }}
               >
@@ -110,16 +115,18 @@ function App() {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                Dashboard
+                Site Name
               </Typography>
               <IconButton color="inherit">
                 {/* has a badge here */}
               </IconButton>
             </Toolbar>
           </StyledAppBar>
-          <StyledDrawer variant="permanent" open={open} >
+          <StyledDrawer variant="permanent" open={open} anchor="left">
             <Toolbar
               sx={{
+                width:drawerWidth,
+                flexShrink:0,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'flex-end',
@@ -132,10 +139,10 @@ function App() {
             </Toolbar>
             <StaticList/>
           </StyledDrawer>
-          <Main open={open}>
-          <h1>Vite + React + Mui</h1>
-
-          </Main>
+          <StyledMain open={open}>
+            <Header/>
+            <h1>Vite + React + Mui</h1>
+          </StyledMain>
         </div>
     </ThemeProvider>
     </>
