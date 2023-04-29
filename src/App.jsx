@@ -7,10 +7,13 @@ import Toolbar from '@mui/material/Toolbar'
 import {Drawer, Box, IconButton} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import styled from '@emotion/styled'
 
 import {useState} from 'react'
 import StaticList from './components/StaticList'
-import styled from '@emotion/styled'
+import Boxes from './pages/Boxes'
+
+
 
 
 function App() {
@@ -142,6 +145,7 @@ function App() {
           <StyledMain open={open}>
             <Header/>
             <h1>Vite + React + Mui</h1>
+            <Boxes/>  
           </StyledMain>
         </div>
     </ThemeProvider>

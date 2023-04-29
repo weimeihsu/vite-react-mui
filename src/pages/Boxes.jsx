@@ -1,4 +1,6 @@
 import { useState } from "react"
+import DeleteIcon from '@mui/icons-material/Delete';
+
 // use state to modify data
 const Boxes = () => {
     const [boxes, setBoxValue] =useState([
@@ -12,10 +14,12 @@ const Boxes = () => {
         <div className="boxContainer">
             useState list the value can be reactively changed
             {boxes.map((boxItem, idx)=>(
-            <a className="card" key={idx} href={boxItem.href}>
-               {boxItem.title}
-            </a>
+            <>
+            <a className="card" key={idx} href={boxItem.href}>{boxItem.title}</a> 
+            <DeleteIcon/>
+            </>       
         ))}
+            
         </div>
         </>
      )
