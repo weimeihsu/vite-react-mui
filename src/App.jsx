@@ -12,7 +12,7 @@ import styled from '@emotion/styled'
 import {useState} from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-import StaticList from './components/StaticList'
+import NavBar from './components/NavBar'
 import Boxes from './pages/Boxes'
 import HomePagae from './pages/HomePage'
 import NavIcons from './components/NavIcon'
@@ -141,7 +141,7 @@ function App() {
               </IconButton>
             </Toolbar>
             
-            <StaticList/>
+            <NavBar/>
 
           </StyledDrawer>
           <StyledMain open={open}>

@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
-const StaticList = () => {
+const NavBar = () => {
     const navListStatic =[
         {id:1, title:'Homepage', path:'/'},
         {id:2, title:'Boxes', path:'boxes'},
@@ -15,8 +15,9 @@ const StaticList = () => {
             </NavLink>
         ))}
         </nav>  
+        <main><Outlet/></main>
         </>
      )
 }
  
-export default StaticList;
+export default NavBar;
