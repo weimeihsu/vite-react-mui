@@ -1,6 +1,6 @@
 // import { ColorModeContext, useMode } from './theme'
 import { AppBar, ThemeProvider } from '@mui/material'
-import { darkTheme, CustomTheme } from './components/styles/theme'
+import { customedPalette } from './components/styles/theme'
 import CssBaseline from '@mui/material/CssBaseline'
 import Typography from '@mui/material/Typography'
 import Toolbar from '@mui/material/Toolbar'
@@ -10,10 +10,12 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import styled from '@emotion/styled'
 
 import {useState} from 'react'
+import { Routes, Route } from 'react-router-dom'
+
 import StaticList from './components/StaticList'
 import Boxes from './pages/Boxes'
-
-
+import HomePagae from './pages/HomePage'
+import NavIcons from './components/NavIcon'
 
 
 function App() {
@@ -90,7 +92,7 @@ function App() {
   
   return (
     <>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={customedPalette}>
     <CssBaseline enableColorScheme/>
         <div className="app">
           <StyledAppBar position="absolute" open={open}>
@@ -120,9 +122,7 @@ function App() {
               >
                 Site Name
               </Typography>
-              <IconButton color="inherit">
-                {/* has a badge here */}
-              </IconButton>
+              <NavIcons/>
             </Toolbar>
           </StyledAppBar>
           <StyledDrawer variant="permanent" open={open} anchor="left">
@@ -140,12 +140,18 @@ function App() {
                 <ChevronLeftIcon />
               </IconButton>
             </Toolbar>
+            
             <StaticList/>
+
           </StyledDrawer>
           <StyledMain open={open}>
             <Header/>
             <h1>Vite + React + Mui</h1>
-            <Boxes/>  
+             
+            <Routes>
+              <Route index element={<HomePagae/> } />
+              <Route path="boxes" element={<Boxes/> } />
+            </Routes>
           </StyledMain>
         </div>
     </ThemeProvider>

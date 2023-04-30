@@ -2,7 +2,7 @@
 
 html,
 body,
-#root,
+:root,
 .app,
 .content{
   height: 100%;
@@ -19,6 +19,17 @@ body,
   width:10px;
 }
 
-::-webkit-scrollbar-track{
-  background-color: #e0e0e0;
+
+.navBar{
+  padding: 24px;
+}
+.navItem{
+  display: flex;
+  text-decoration: none;
+  padding: 8px;
+}
+
+.navItem.active{
+  background: var(--primary);
+  border-radius: 4px;
 }

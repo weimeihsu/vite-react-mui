@@ -14,10 +14,10 @@ const Boxes = () => {
         <div className="boxContainer">
             useState list the value can be reactively changed
             {boxes.map((boxItem, idx)=>(
-            <>
-            <a className="card" key={idx} href={boxItem.href}>{boxItem.title}</a> 
-            <DeleteIcon/>
-            </>       
+                <div className="box" key={idx}>
+                <a className="card"  href={boxItem.href}>{boxItem.title}</a> 
+                <DeleteIcon/>
+                </div>     
         ))}
             
         </div>
