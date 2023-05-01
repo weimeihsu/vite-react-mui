@@ -13,7 +13,7 @@ import {useState} from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
-import Boxes from './pages/Boxes'
+import BoxList from './pages/BoxList'
 import HomePagae from './pages/HomePage'
 import NavIcons from './components/NavIcon'
 
@@ -77,10 +77,10 @@ function App() {
   )
 
   const Header = styled('div')(({ theme }) => ({
+    // necessary for content to be below app bar
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   }))
@@ -145,12 +145,11 @@ function App() {
 
           </StyledDrawer>
           <StyledMain open={open}>
-            <Header/>
-            <h1>Vite + React + Mui</h1>
-             
+            <Header/> 
+             {/* outlet will replace the routes */}
             <Routes>
               <Route index element={<HomePagae/> } />
-              <Route path="boxes" element={<Boxes/> } />
+              <Route path="boxes" element={<BoxList/> } />
             </Routes>
           </StyledMain>
         </div>

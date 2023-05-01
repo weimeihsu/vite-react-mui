@@ -30,6 +30,5 @@ body,
 }
 
 .navItem.active{
-  background: var(--primary);
   border-radius: 4px;
 }
