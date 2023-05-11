@@ -7,7 +7,7 @@ import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 
-const BoxForm = () => {
+const BoxForm = ({movieLabels}) => {
 
     const [movieLabel, setLabel] = useState('Thriller');
 
@@ -29,11 +29,12 @@ const BoxForm = () => {
           label="Movie Label"
           onChange={handleChange}
         >
-          <MenuItem value={'Thriller'}>Thriller</MenuItem>
-          <MenuItem value={'Fantasy'}>Fantasy</MenuItem>
+          {movieLabels.map((item,idx)=>(
+          <MenuItem key={idx} value={item}>{item}</MenuItem>
+        ))}
         </Select>
       </FormControl>
-        
+      
       <Button variant="contained" color="success">Add</Button>
     </Box>   
      );

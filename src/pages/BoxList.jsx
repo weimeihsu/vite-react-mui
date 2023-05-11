@@ -23,15 +23,13 @@ const BoxList = () => {
     return ( 
         <>
         <h1>Boxes CRUD case</h1>
-        <BoxForm/>
+        <BoxForm movieLabels={movieLabels}/>
         <Button variant="contained" color="success">Add New</Button>
         <Stack  direction="row"
                 flexWrap="wrap">
         <Boxes boxes={boxes} onDelete={deleteBox}/>    
         </Stack>
-        {movieLabels.map((item,idx)=>(
-          <Button key={idx}>{item}</Button>
-        ))}
+        
         </>
      )
 }
