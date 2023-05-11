@@ -8,15 +8,15 @@ import BoxForm from "../components/BoxForm"
 
 // use state to modify data
 const BoxList = () => {
-    const [boxes, setBox] =useState([
-        {title:'Snow White', type:'Cartoon',id:0},
-        {title:'The Secret Garden', type:'Comedy',id:1},
-        {title:'Lion King', type:'Drama',id:2},
-        {title:'Little Mermaid', type:'Thriller',id:3},
-        {title:'Spider man', type:'Action',id:4},
-        {title:'What Happened to Wed', type:'Action',id:5},
+    const [boxes, setBox] = useState([
+        {title:'Snow White', label:'Cartoon',id:0},
+        {title:'The Secret Garden', label:'Comedy',id:1},
+        {title:'Lion King', label:'Drama',id:2},
+        {title:'Little Mermaid', label:'Thriller',id:3},
+        {title:'Spider man', label:'Action',id:4},
+        {title:'What Happened to Wed', label:'Action',id:5},
     ])
-
+    const movieLabels =['Cartoon','Comedy','Drama','Thriller','Action' ]
     const deleteBox = (id) => {
         setBox(boxes.filter(box => box.id !==id))
     }
@@ -29,6 +29,9 @@ const BoxList = () => {
                 flexWrap="wrap">
         <Boxes boxes={boxes} onDelete={deleteBox}/>    
         </Stack>
+        {movieLabels.map((item,idx)=>(
+          <Button key={idx}>{item}</Button>
+        ))}
         </>
      )
 }

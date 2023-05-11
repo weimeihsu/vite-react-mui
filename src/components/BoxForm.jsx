@@ -8,32 +8,34 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 
 const BoxForm = () => {
-    const [type, setAge] = useState('10');
+
+    const [movieLabel, setLabel] = useState('Thriller');
 
     const handleChange = (e) => {
-        setAge(e.target.value);
+      setLabel(e.target.value);
     };
 
     return ( 
-    <Box sx={{ }}>
+         <Box sx={{ }}>
+         
         <TextField id="outlined-basic" label="Movie Name" variant="outlined" sx={{mb:2}} />
        {/* select component */}
         <FormControl fullWidth size="small">
-        <InputLabel id="select-label">Type</InputLabel>
+        <InputLabel id="selected-label">Movie Label</InputLabel>
         <Select
-          labelId="select-label"
+          labelId="selected-label"
           id="simple-select"
-          value={type}
-          label="Type"
+          value={movieLabel}
+          label="Movie Label"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={'Thriller'}>Thriller</MenuItem>
+          <MenuItem value={'Fantasy'}>Fantasy</MenuItem>
         </Select>
       </FormControl>
+        
       <Button variant="contained" color="success">Add</Button>
-    </Box>
+    </Box>   
      );
 }
  

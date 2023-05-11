@@ -6,7 +6,7 @@ const Boxes = ({boxes, onDelete}) => {
 
     return ( 
         <>
-        {boxes.map((boxItem)=>(
+        {boxes.map(boxItem=>(
             <Box variant="outlined" className="box" key={boxItem.id} sx={{ p: 2,m:1,backgroundColor: 'primary.dark',
             borderRadius:'4px',
             cursor:'pointer',
@@ -14,7 +14,7 @@ const Boxes = ({boxes, onDelete}) => {
                 backgroundColor: 'primary.dark',
                 opacity: [0.9, 0.8, 0.7],
             },}}>
-            <Chip label={boxItem.type} size="small"/>
+            <Chip label={boxItem.label} size="small"/>
             <h3>{boxItem.title}</h3> 
             
             <DeleteIcon sx={{ fontSize: 16 }} onClick={()=>onDelete(boxItem.id)}/>
