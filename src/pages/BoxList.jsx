@@ -1,9 +1,11 @@
 import { useState } from "react"
 import Stack from '@mui/material/Stack'
-import Button from "@mui/material/Button"
+import Button from '@mui/material/Button'
+
 
 import Boxes from '../components/Boxes'
-import BoxForm from "../components/BoxForm"
+import BoxForm from '../components/BoxForm'
+import FilterChip from '../components/FilterChip'
 
 
 // use state to modify data
@@ -16,20 +18,43 @@ const BoxList = () => {
         {title:'Spider man', label:'Action',id:4},
         {title:'What Happened to Wed', label:'Action',id:5},
     ])
-    const movieLabels =['Cartoon','Comedy','Drama','Thriller','Action' ]
+    const [popForm, setPopForm] = useState(false)
+    const [movieLabels, setMovieLabel] = useState(
+        [{label:'All', selected:true},
+        {label:'Cartoon', selected:false},
+        {label:'Comedy', selected:false},
+        {label:'Drama', selected:false},
+        {label:'Thriller', selected:false},
+        {label:'Action', selected:false} ]
+    )
+ 
+    const addBox = (boxObj) => {
+        console.log(boxObj)
+    }
     const deleteBox = (id) => {
         setBox(boxes.filter(box => box.id !==id))
+    }
+    const toggleForm = () =>{
+        setPopForm(!popForm)
+    }
+    const selectedLabel = (item) =>{
+       
+        console.log(item)
+        
     }
     return ( 
         <>
         <h1>Boxes CRUD case</h1>
-        <BoxForm movieLabels={movieLabels}/>
-        <Button variant="contained" color="success">Add New</Button>
-        <Stack  direction="row"
-                flexWrap="wrap">
-        <Boxes boxes={boxes} onDelete={deleteBox}/>    
-        </Stack>
-        
+        {/* if popForm is true then show the form. short way for if else */}
+        {popForm && <BoxForm movieLabels={movieLabels} onAdd={addBox} onClose={toggleForm}/>}
+        <Button variant="contained" color="secondary" onClick={toggleForm}>Add New</Button>
+        <FilterChip movieLabels={movieLabels}  onSelect={selectedLabel}/>
+        {boxes.length > 0 ? (
+            <Stack  direction="row"
+            flexWrap="wrap">
+            <Boxes boxes={boxes} onDelete={deleteBox}/>    
+            </Stack>
+        ):(<Stack>No data available</Stack>)}
         </>
      )
 }
