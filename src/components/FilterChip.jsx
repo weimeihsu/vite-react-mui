@@ -1,13 +1,12 @@
 import Chip from '@mui/material/Chip'
-import { useState } from 'react'
 
-const FilterChip = ({movieLabels, onSelect}) => {
 
-    
+const FilterChip = ({movieLabels, onSelectLabel}) => {
+
     return ( 
         <>
          {movieLabels.map(item=>(
-            <Chip sx={{mr:1}} color={item.selected ? "primary" : "default"}  variant={item.selected ? "default" : "outlined"} onClick={()=>onSelect(item)} key={item.label} label={item.label}/>
+            <Chip sx={{mr:1}} color={item.selected ? "primary" : "default"}  variant={item.selected ? "default" : "outlined"} onClick={()=>onSelectLabel(item.label)} key={item.label} label={item.label}/>
         ))}
         </>
        

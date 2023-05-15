@@ -25,11 +25,11 @@ const BoxList = () => {
         {label:'Comedy', selected:false},
         {label:'Drama', selected:false},
         {label:'Thriller', selected:false},
-        {label:'Action', selected:false} ]
+        {label:'Action', selected:false}]
     )
  
     const addBox = (boxObj) => {
-        console.log(boxObj)
+        setBox([boxObj,...boxes])
     }
     const deleteBox = (id) => {
         setBox(boxes.filter(box => box.id !==id))
@@ -37,18 +37,24 @@ const BoxList = () => {
     const toggleForm = () =>{
         setPopForm(!popForm)
     }
-    const selectedLabel = (item) =>{
-       
-        console.log(item)
+    const selectedLabel = (label) =>{
+        setMovieLabel(movieLabels.map(movieLabel =>{
+            if(movieLabel.label === label){
+                return{...movieLabel, selected: true}
+            }else {
+                return movieLabel
+            }
+        }))
+        console.log(label)
         
     }
     return ( 
         <>
         <h1>Boxes CRUD case</h1>
         {/* if popForm is true then show the form. short way for if else */}
-        {popForm && <BoxForm movieLabels={movieLabels} onAdd={addBox} onClose={toggleForm}/>}
+        {popForm && <BoxForm movieLabels={movieLabels} onAddBox={addBox} onClose={toggleForm}/>}
         <Button variant="contained" color="secondary" onClick={toggleForm}>Add New</Button>
-        <FilterChip movieLabels={movieLabels}  onSelect={selectedLabel}/>
+        <FilterChip movieLabels={movieLabels}  onSelectLabel={selectedLabel}/>
         {boxes.length > 0 ? (
             <Stack  direction="row"
             flexWrap="wrap">

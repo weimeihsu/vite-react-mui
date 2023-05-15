@@ -7,30 +7,28 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 
-const BoxForm = ({movieLabels, onAdd, onClose}) => {
+const BoxForm = ({movieLabels, onAddBox, onClose}) => {
 
     const [movieName, setMovieName] = useState('')
     const [movieLabel, setLabel] = useState('')
 
-    // const handleChange = (e) => {
-    //   setLabel(e.target.value);
-    // }
     const handleSubmit = (e) => {
       e.preventDefault()
       if(!movieName){
         alert('need name')
         return
       }
-      onAdd({movieName,movieLabel})
+      const boxObj={
+        title:movieName,
+        label:movieLabel,
+        id : Math.floor(Math.random() * 100)
+      }
+      onAddBox(boxObj)
 
       setMovieName('')
       setLabel('')
     }
 
-    const closeForm = ()=>{
-
-    }
- 
     return ( 
       <form onSubmit={handleSubmit}>
         <Stack spacing={2} >

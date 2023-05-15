@@ -14,7 +14,7 @@ const Boxes = ({boxes, onDelete}) => {
                 backgroundColor: 'primary.dark',
                 opacity: [0.9, 0.8, 0.7],
             },}}>
-            <Chip label={boxItem.label} size="small"/>
+            <Chip key={boxItem.id} label={boxItem.label} size="small"/>
             <h3>{boxItem.title}</h3> 
             
             <DeleteIcon sx={{ fontSize: 16 }} onClick={()=>onDelete(boxItem.id)}/>
