@@ -6,9 +6,28 @@ import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
 
-const BoxForm = ({movieLabels, onAddBox, onClose}) => {
+import Modal from '@mui/material/Modal'
 
+const BoxForm = ({movieLabels, onAddBox}) => {
+    // control form popup
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    
+    const style = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 400,
+      bgcolor: 'background.paper',
+      border: '2px solid #000',
+      boxShadow: 24,
+      p: 4,
+    };
+    
     const [movieName, setMovieName] = useState('')
     const [movieLabel, setLabel] = useState('')
 
@@ -27,9 +46,19 @@ const BoxForm = ({movieLabels, onAddBox, onClose}) => {
 
       setMovieName('')
       setLabel('')
+      setOpen(false)
     }
 
     return ( 
+      <>
+      <Button onClick={handleOpen} variant="outlined">Add New</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
       <form onSubmit={handleSubmit}>
         <Stack spacing={2} >
             <FormControl fullWidth size="small">
@@ -51,16 +80,15 @@ const BoxForm = ({movieLabels, onAddBox, onClose}) => {
               </Select>
             </FormControl>
           <Stack spacing={2} direction="row">
-          <Button variant="outlined" color="secondary" onClick={onClose}>Cancel</Button>
+          <Button variant="outlined" color="secondary" onClick={handleClose}>Cancel</Button>
           <Button variant="contained" color="secondary" type='submit'>Add</Button>
           </Stack>
         </Stack>
-     
-     
-      
-     
       </form>
-        
+      </Box>
+      </Modal>
+      </>
+      
      );
 }
  

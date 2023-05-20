@@ -2,7 +2,7 @@ import Chip from '@mui/material/Chip'
 
 
 const FilterChip = ({movieLabels, onSelectLabel}) => {
-
+  
     return ( 
         <>
          {movieLabels.map(item=>(
