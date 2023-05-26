@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
 
 import Boxes from '../components/Boxes'
 import BoxForm from '../components/BoxForm'
 import FilterChip from '../components/FilterChip'
-
 
 // use state to modify data
 const BoxList = () => {

@@ -1,15 +1,14 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import { selectAllnavList }  from '../features/navListSlice'
 
 const NavBar = () => {
-    const navListStatic =[
-        {id:1, title:'Homepage', path:'/'},
-        {id:2, title:'Boxes', path:'boxes'},
-        {id:3, title:'Graphic Designe', path:'others'},
-    ]
+    const navList = useSelector(selectAllnavList)
+    
     return ( 
         <>
         <nav className="navBar">
-          {navListStatic.map((navitem, idx)=>( 
+          {navList.map((navitem, idx)=>( 
             <NavLink className="navItem" to={navitem.path} key={idx}>
                {navitem.title}
             </NavLink>

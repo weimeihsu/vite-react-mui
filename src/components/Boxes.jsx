@@ -1,12 +1,14 @@
 import Chip from '@mui/material/Chip'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Box from '@mui/material/Box'
+import { useSelector } from 'react-redux'
+import { selectAllBoxes }  from '../features/boxesSlice'
 
 const Boxes = ({boxes, onDelete}) => {
-
+    const boxlist = useSelector(selectAllBoxes)
     return ( 
         <>
-        {boxes.map(boxItem=>(
+        {boxlist.map(boxItem=>(
             <Box variant="outlined" className="box" key={boxItem.id} sx={{ p: 2,m:1,backgroundColor: 'primary.dark',
             borderRadius:'4px',
             cursor:'pointer',
