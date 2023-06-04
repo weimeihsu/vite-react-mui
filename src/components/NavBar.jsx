@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
-import { selectAllnavList }  from '../features/navListSlice'
+import { selectAllnavList }  from '../reducers/navListSlice'
 
 const NavBar = () => {
     const navList = useSelector(selectAllnavList)

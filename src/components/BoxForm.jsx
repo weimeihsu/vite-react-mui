@@ -9,15 +9,14 @@ import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import { useDispatch } from 'react-redux'
-import { nanoid } from '@reduxjs/toolkit'
-import { addBox } from '../features/boxesSlice'
+import { addBox } from '../reducers/boxesSlice'
 
-const BoxForm = ({movieLabels, onAddBox}) => {
+const BoxForm = ({chips}) => {
     // control form popup
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
-    const dispatch = useDispatch()
+    
     const style = {
       position: 'absolute',
       top: '50%',
@@ -31,38 +30,21 @@ const BoxForm = ({movieLabels, onAddBox}) => {
     };
     
     const [movieName, setMovieName] = useState('')
-    const [movieLabel, setLabel] = useState('')
+    const [label, setLabel] = useState('')
 
+    const dispatch = useDispatch()
     const handleSubmit = (e) => {
       e.preventDefault()
-      if(movieName && movieLabel){
+      if(movieName && label){
         dispatch(
-          addBox({
-            title:movieName,
-            label:movieLabel,
-            id: nanoid()
-          })
+          addBox({title:movieName, label})
+          // addBox(movieName,label)
         )
         setMovieName('')
         setLabel('')
         setOpen(false)
       } 
     }
-    // const handleSubmit = (e) => {
-    //   e.preventDefault()
-    //   if(movieName && movieLabel){
-    //     const boxObj={
-    //       title:movieName,
-    //       label:movieLabel,
-    //       id : Math.floor(Math.random() * 100)
-    //     }
-    //     onAddBox(boxObj)
-  
-    //     setMovieName('')
-    //     setLabel('')
-    //     setOpen(false)
-    //   } 
-    // }
 
     return ( 
       <>
@@ -73,7 +55,7 @@ const BoxForm = ({movieLabels, onAddBox}) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+      <Box sx={style}>
       <form onSubmit={handleSubmit}>
         <Stack spacing={2} >
             <FormControl fullWidth size="small">
@@ -85,12 +67,12 @@ const BoxForm = ({movieLabels, onAddBox}) => {
               <Select
                 labelId="selected-label"
                 id="simple-select"
-                value={movieLabel}
+                value={label}
                 label="Movie Label"
                 onChange={e=>setLabel(e.target.value)}
               >
-                {movieLabels.map((item,idx)=>(
-                <MenuItem key={idx} value={item.label}>{item.label}</MenuItem>
+                {chips.map((item,idx)=>(
+                <MenuItem key={idx} value={item.text}>{item.text}</MenuItem>
               ))}
               </Select>
             </FormControl>
