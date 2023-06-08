@@ -63,20 +63,20 @@ export const boxesSlice = createSlice({
       console.log('delete', id)
       state.boxes = state.boxes.filter(item=>item.id !== id)
     },
-    fetchBoxes:(state,action)=>{
-      onSnapshot(collection(db, 'tasks'), querySnapshot=>{
-        const tempArray=[]
-        querySnapshot.forEach(doc=>{
-          const obj = {
-            id:doc.id,
-            title:doc.data().title,
-            label:doc.data().label
-          }
-          tempArray.push(obj)
-        })
-        console.log(tempArray)
-      })
-    }
+    // fetchBoxes:(state,action)=>{
+    //   onSnapshot(collection(db, 'tasks'), querySnapshot=>{
+    //     const tempArray=[]
+    //     querySnapshot.forEach(doc=>{
+    //       const obj = {
+    //         id:doc.id,
+    //         title:doc.data().title,
+    //         label:doc.data().label
+    //       }
+    //       tempArray.push(obj)
+    //     })
+    //     console.log(tempArray)
+    //   })
+    // }
   },
   // extraReducers:(builder)=>{
   //   builder.addCase(fetchBoxesFromFirestore.fulfilled, (state, action)=>{

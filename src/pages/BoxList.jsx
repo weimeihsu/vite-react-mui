@@ -3,7 +3,9 @@ import Stack from '@mui/material/Stack'
 
 import { useSelector, useDispatch} from 'react-redux'
 import { selectAllLabels, filterChip, selectAllfilteredChips }  from '../reducers/labelsSlide'
-import { selectAllBoxes, fetchBoxes }  from '../reducers/boxesSlice'
+import { selectAllBoxes }  from '../reducers/boxesSlice'
+import { collection, onSnapshot } from 'firebase/firestore'
+import  db  from '../firebase/config'
 
 import Boxes from '../components/Boxes'
 import BoxForm from '../components/BoxForm'
@@ -17,12 +19,18 @@ const BoxList = () => {
     const chipList = useSelector(selectAllLabels)
     const filteredChips = useSelector(selectAllfilteredChips)
     
-    const [filteredboxes, setFilteredBoxes] = useState(boxlist)
+    const [filteredBoxes, setFilteredBoxes] = useState(boxlist)
 
     const selectedChip = (text)=>{
         dispatch(filterChip({text}))
     }
-    useEffect(()=>{dispatch(fetchBoxes())},[])
+    const [boxList, setBoxList] = useState([])
+    useEffect(()=>{
+        onSnapshot(collection(db, 'tasks'), querySnapshot=>{
+            setBoxList(querySnapshot.docs.map(doc=>doc.data()))
+        })
+    },[])
+
     useEffect(()=>{filtering()},[filteredChips])
     
     const filtering = () =>{
@@ -45,10 +53,14 @@ const BoxList = () => {
         <BoxForm chips={chipList}/>
         </Stack>
         {chipList.map(chip=><FilterChip key={chip.text} {...chip} onSelectLabel={selectedChip}/>)}
- 
+        <Stack direction="row" flexWrap="wrap">
+            {boxList.map(box=><Boxes key={box.id} {...box}/>
+            )}
+        </Stack>
+        
         {boxlist.length > 0 ? (
             <Stack direction="row" flexWrap="wrap">
-            {filteredboxes.map(box=><Boxes key={box.id} {...box}/>)}
+            {filteredBoxes.map(box=><Boxes key={box.id} {...box}/>)}
             </Stack>
         ):(<Stack>No data available</Stack>)}
         </>
