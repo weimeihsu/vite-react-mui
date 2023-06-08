@@ -12,9 +12,8 @@ import FilterChip from '../components/FilterChip'
 // use state to modify data
 const BoxList = () => {
     const dispatch = useDispatch()
-
     const boxlist = useSelector(selectAllBoxes)
-
+  
     const chipList = useSelector(selectAllLabels)
     const filteredChips = useSelector(selectAllfilteredChips)
     
@@ -46,7 +45,7 @@ const BoxList = () => {
         <BoxForm chips={chipList}/>
         </Stack>
         {chipList.map(chip=><FilterChip key={chip.text} {...chip} onSelectLabel={selectedChip}/>)}
-
+ 
         {boxlist.length > 0 ? (
             <Stack direction="row" flexWrap="wrap">
             {filteredboxes.map(box=><Boxes key={box.id} {...box}/>)}

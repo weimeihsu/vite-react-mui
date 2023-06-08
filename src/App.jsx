@@ -9,13 +9,12 @@ import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import styled from '@emotion/styled'
 
-import {useState} from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 
 import NavBar from './components/NavBar'
-import BoxList from './pages/BoxList'
-import HomePagae from './pages/HomePage'
 import NavIcons from './components/NavIcon'
+
+import Routers from './routers/Routers'
 
 
 function App() {
@@ -147,10 +146,7 @@ function App() {
           <StyledMain open={open}>
             <Header/> 
              {/* outlet will replace the routes */}
-            <Routes>
-              <Route index element={<HomePagae/> } />
-              <Route path="boxes" element={<BoxList/> } />
-            </Routes>
+            <Routers/>
           </StyledMain>
         </div>
     </ThemeProvider>

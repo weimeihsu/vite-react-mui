@@ -1,7 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { addDoc, collection, getDocs, onSnapshot, doc } from 'firebase/firestore'
+import { addDoc, collection, onSnapshot } from 'firebase/firestore'
 import  db  from '../firebase/config'
 
+// export const fetchBoxesFromFirestore = createAsyncThunk(
+//   'boxes/fetch',
+//   async ()=>{
+//     const q = query(collection(db, 'tasks'))
+//     onSnapshot(q, querySnapshot=>{
+//       const tempArray=[]
+//       querySnapshot.forEach(doc=>{
+//         const obj = {
+//           id:doc.id,
+//           title:doc.data().title,
+//           label:doc.data().label
+//         }
+//         tempArray.push(obj)
+//       })
+//       console.log(tempArray)
+//       return tempArray
+//     })
+//   }
+// )
 const initialState = {
   boxes:[{title:'Snow White', label:'Cartoon',id:0},
          {title:'The Secret Garden', label:'Comedy',id:1},
@@ -10,6 +29,7 @@ const initialState = {
          {title:'Spider man', label:'Action',id:4},
          {title:'What Happened to Wed', label:'Action',id:5}],
 } 
+
 export const boxesSlice = createSlice({
   name: 'boxes',
   initialState,
@@ -40,11 +60,10 @@ export const boxesSlice = createSlice({
     // },
     deleteBox: (state, action)=>{
       const { id } = action.payload
-      console.log('delete',id)
+      console.log('delete', id)
       state.boxes = state.boxes.filter(item=>item.id !== id)
     },
-    fetchBoxes:(state, action)=>{
-      // const querySnapshot = getDocs(collection(db, 'tasks'))
+    fetchBoxes:(state,action)=>{
       onSnapshot(collection(db, 'tasks'), querySnapshot=>{
         const tempArray=[]
         querySnapshot.forEach(doc=>{
@@ -58,7 +77,12 @@ export const boxesSlice = createSlice({
         console.log(tempArray)
       })
     }
-}
+  },
+  // extraReducers:(builder)=>{
+  //   builder.addCase(fetchBoxesFromFirestore.fulfilled, (state, action)=>{
+  //     state.boxes=action.payload
+  //   })
+  // }
 })
 
 // Action creators are generated for each case reducer function
